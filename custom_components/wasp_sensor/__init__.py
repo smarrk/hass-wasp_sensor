@@ -10,7 +10,8 @@ from typing import List, Dict
 from homeassistant import config as conf_util
 from homeassistant.loader import async_get_integration
 from homeassistant.exceptions import HomeAssistantError
-from homeassistant.core import Config, HomeAssistant
+from homeassistant.core import HomeAssistant
+from homeassistant.helpers.typing import ConfigType
 from homeassistant.helpers import discovery
 from homeassistant.components.binary_sensor import BinarySensorEntity
 
@@ -70,7 +71,7 @@ class EntityRegistry:
         self.registered_entities = []
 
 
-async def async_setup(hass: HomeAssistant, hass_config: Config) -> bool:
+async def async_setup(hass: HomeAssistant, hass_config: ConfigType) -> bool:
     """Component setup."""
     if hass.data.get(DOMAIN) is None:
         _LOGGER.info(STARTUP_MESSAGE)
@@ -111,7 +112,7 @@ async def async_setup(hass: HomeAssistant, hass_config: Config) -> bool:
 
 
 async def start_it_up(
-    hass: HomeAssistant, hass_config: Config, registry: EntityRegistry
+    hass: HomeAssistant, hass_config: ConfigType, registry: EntityRegistry
 ):
     """ Handle Startup Tasks """
 
